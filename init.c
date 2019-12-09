@@ -35,9 +35,9 @@ void Load_Texture_Num() {
     free(Img.img);
 }
 
-void Load_Texture_Goal(){
-	Image Img_Goal_Tmp, Img_Goal_Shadow_Tmp, Img_Goal_Center_Tmp;
-	Load_Png(&Img_Goal_Tmp.img, &Img_Goal_Tmp.w, &Img_Goal_Tmp.h, "Images/Goal.png");
+void Load_Texture_Goal() {
+    Image Img_Goal_Tmp, Img_Goal_Shadow_Tmp, Img_Goal_Center_Tmp;
+    Load_Png(&Img_Goal_Tmp.img, &Img_Goal_Tmp.w, &Img_Goal_Tmp.h, "Images/Goal.png");
     Load_Png(&Img_Goal_Center_Tmp.img, &Img_Goal_Center_Tmp.w, &Img_Goal_Center_Tmp.h, "Images/Goal_Center.png");
     Load_Png(&Img_Goal_Shadow_Tmp.img, &Img_Goal_Shadow_Tmp.w, &Img_Goal_Shadow_Tmp.h, "Images/Goal_Shadow.png");
     Create_Image(&Img_Goal, 336, 255);
@@ -99,10 +99,10 @@ void Set_Goal(Goal *g, int y) {
     g->r = r;
     g->x = rand() % (WIDTH - 2 * (int)g->r) + g->r;
     g->Is_Cover = 0;
-    g->Rct.Left = g->x-r;
-    g->Rct.Right = g->Rct.Left+336.0f*r/64;
-    g->Rct.Top = g->y+r;
-    g->Rct.Bottom = g->Rct.Top-255.0f*r/64;
+    g->Rct.Left = g->x - r;
+    g->Rct.Right = g->Rct.Left + 336.0f * r / 64;
+    g->Rct.Top = g->y + r;
+    g->Rct.Bottom = g->Rct.Top - 255.0f * r / 64;
     g->Rct_Cover.Left = g->x - g->r;
     g->Rct_Cover.Right = g->x + g->r;
     g->Rct_Cover.Bottom = g->y - g->r;
@@ -162,7 +162,7 @@ void Load_Menu() {
     Menu_Stt = 0;
     Menu_Alpha = 0.0f;
     Menu_Stt_Go = 0;
-    Is_Perfect=0;
+    Is_Perfect = 0;
     glutPassiveMotionFunc(NULL);
     glutMouseFunc(NULL);
 }
@@ -286,21 +286,21 @@ void Init_Game() {
         Ripple_Alpha[1][i] = Ripple_Alpha[0][i - 10];
     }
     // Perfect
-    for (i=0;i<20;i++){
-    	Rct_Perfect_Save[i].Left=-(i+1)*2.3f;
-    	Rct_Perfect_Save[i].Right=(i+1)*2.3f;
-    	Rct_Perfect_Save[i].Bottom=-(i+1)*0.3f-10.0f+80.0f;
-    	Rct_Perfect_Save[i].Top=(i+1)*0.3f+10.0f+80.0f;
-    	Perfect_Alpha[i]=1.0f;
-	}
-    for (i=20;i<80;i++){
-    	Rct_Perfect_Save[i].Left=-46.0f;
-    	Rct_Perfect_Save[i].Right=46.0f;
-    	Rct_Perfect_Save[i].Bottom=-18.0f+(i-19)*1.0f+80.0f;
-    	Rct_Perfect_Save[i].Top=18.0f+(i-19)*1.0f+80.0f;
-    	Perfect_Alpha[i]=(80-1.0f-i)/(80-20);
-	}
-	//
+    for (i = 0; i < 20; i++) {
+        Rct_Perfect_Save[i].Left = -(i + 1) * 2.3f;
+        Rct_Perfect_Save[i].Right = (i + 1) * 2.3f;
+        Rct_Perfect_Save[i].Bottom = -(i + 1) * 0.3f - 10.0f + 80.0f;
+        Rct_Perfect_Save[i].Top = (i + 1) * 0.3f + 10.0f + 80.0f;
+        Perfect_Alpha[i] = 1.0f;
+    }
+    for (i = 20; i < 80; i++) {
+        Rct_Perfect_Save[i].Left = -46.0f;
+        Rct_Perfect_Save[i].Right = 46.0f;
+        Rct_Perfect_Save[i].Bottom = -18.0f + (i - 19) * 1.0f + 80.0f;
+        Rct_Perfect_Save[i].Top = 18.0f + (i - 19) * 1.0f + 80.0f;
+        Perfect_Alpha[i] = (80 - 1.0f - i) / (80 - 20);
+    }
+    //
     Init_Sound();
     Init_Goal();
     Load_Menu();

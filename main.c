@@ -3,26 +3,26 @@
 void Display() {
     glClear(GL_COLOR_BUFFER_BIT);
     Game_Display_Func[Game_Stt]();
-    if (Is_Perfect){
-    	glColor4f(1.0f,1.0f,1.0f,Perfect_Alpha[Perfect_Stt]);
-    	Map_Texture(&Img_Perfect);
-    	Draw_Rect(&Rct_Perfect);
-    	glColor3fv(Color_White);
-	}
+    if (Is_Perfect) {
+        glColor4f(1.0f, 1.0f, 1.0f, Perfect_Alpha[Perfect_Stt]);
+        Map_Texture(&Img_Perfect);
+        Draw_Rect(&Rct_Perfect);
+        glColor3fv(Color_White);
+    }
     glutSwapBuffers();
 }
 
 void Timer(int value) {
     Game_Process_Func[Game_Stt]();
-    if (Is_Perfect){
-    	Rct_Perfect.Left=Goal_Stand->x+Rct_Perfect_Save[Perfect_Stt].Left;
-    	Rct_Perfect.Right=Goal_Stand->x+Rct_Perfect_Save[Perfect_Stt].Right;
-    	Rct_Perfect.Bottom=Goal_Stand->y+Rct_Perfect_Save[Perfect_Stt].Bottom;
-    	Rct_Perfect.Top=Goal_Stand->y+Rct_Perfect_Save[Perfect_Stt].Top;
-    	Perfect_Stt++;
-    	if (Perfect_Stt==80)
-    		Is_Perfect=0;
-	}
+    if (Is_Perfect) {
+        Rct_Perfect.Left = Goal_Stand->x + Rct_Perfect_Save[Perfect_Stt].Left;
+        Rct_Perfect.Right = Goal_Stand->x + Rct_Perfect_Save[Perfect_Stt].Right;
+        Rct_Perfect.Bottom = Goal_Stand->y + Rct_Perfect_Save[Perfect_Stt].Bottom;
+        Rct_Perfect.Top = Goal_Stand->y + Rct_Perfect_Save[Perfect_Stt].Top;
+        Perfect_Stt++;
+        if (Perfect_Stt == 80)
+            Is_Perfect = 0;
+    }
     glutPostRedisplay();
     glutTimerFunc(INTERVAL, Timer, 0);
 }
@@ -36,7 +36,7 @@ void Passive_Menu(int x, int y) {
 
 void Mouse_Menu(int button, int status, int x, int y) {
     if (Menu_Stt == 1) {
-    	Mix_PlayChannel(-1, Sound_Play, 0);
+        Mix_PlayChannel(-1, Sound_Play, 0);
         Menu_Stt_Go = 1;
         glutPassiveMotionFunc(NULL);
         glutMouseFunc(NULL);

@@ -69,29 +69,29 @@ void Game_Process_Shoot() {
     Ball.vy *= 0.97f;
     if (Ball.vx < 0.2f && Ball.vy < 0.2f) {
         Game_Timer = 0;
-        float Distance=Sqr(Ball.x - Goal_Current->x) + Sqr(Ball.y - Goal_Current->y);
+        float Distance = Sqr(Ball.x - Goal_Current->x) + Sqr(Ball.y - Goal_Current->y);
         if (Distance < Sqr(Goal_Current->r - 8.0f)) {
             Cover.Stt = 1;
             Cover.Offset = Goal_Current->r * 0.08f;
-            Cover.Vertex.Left = (int)(Goal_Current->x-Goal_Current->r);
-            Cover.Vertex.Right = (int)(Goal_Current->x+Goal_Current->r);
-            Cover.Vertex.Bottom = (int)(Goal_Current->y-Goal_Current->r);
+            Cover.Vertex.Left = (int)(Goal_Current->x - Goal_Current->r);
+            Cover.Vertex.Right = (int)(Goal_Current->x + Goal_Current->r);
+            Cover.Vertex.Bottom = (int)(Goal_Current->y - Goal_Current->r);
             Cover.Vertex.Top = Cover.Vertex.Bottom + Cover.Stt * Cover.Offset;
             Cover.TexCoord.Left = 0.0f;
             Cover.TexCoord.Right = 1.0f;
             Cover.TexCoord.Bottom = 0.0f;
             Cover.TexCoord.Top = Cover.Stt / 25.0f;
             Goal_Stand = Goal_Current;
-            if (Distance<200){
-            	Score_Add=2;
-            	Is_Perfect=1;
-            	Perfect_Stt=0;
-            	Mix_PlayChannel(-1, Sound_Perfect, 0);
-			}else{
-				Score_Add=1;
-				Mix_PlayChannel(-1, Sound_Goal, 0);
-			}
-			Create_Goal();
+            if (Distance < 200) {
+                Score_Add = 2;
+                Is_Perfect = 1;
+                Perfect_Stt = 0;
+                Mix_PlayChannel(-1, Sound_Perfect, 0);
+            } else {
+                Score_Add = 1;
+                Mix_PlayChannel(-1, Sound_Goal, 0);
+            }
+            Create_Goal();
             Game_Stt = GAME_STT_GOAL;
         } else {
             Game_Stt = GAME_STT_DEAD;
@@ -108,7 +108,7 @@ void Game_Process_Goal() {
         if (Cover.Stt == 25) {
             Goal_Stand->Is_Cover = 1;
             Game_Timer = 0;
-            Score+=Score_Add;
+            Score += Score_Add;
             Update_Score();
             Game_Stt = GAME_STT_IDLE;
         }

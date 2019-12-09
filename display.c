@@ -11,14 +11,14 @@ void Draw_Goal() {
     Goal_Ptr = Goal_Current;
     int i;
     for (i = 0; i < 5; i++) {
-    	if (Goal_Ptr->Rct.Bottom<=HEIGHT&&Goal_Ptr->Rct.Top>=0){
-    		Map_Texture(&Img_Goal);
-	        Draw_Rect(&Goal_Ptr->Rct);
-	        if (Goal_Ptr->Is_Cover) {
-	            Map_Texture(&Img_Goal_Cover);
-	            Draw_Rect(&Goal_Ptr->Rct_Cover);
-	        }
-		}
+        if (Goal_Ptr->Rct.Bottom <= HEIGHT && Goal_Ptr->Rct.Top >= 0) {
+            Map_Texture(&Img_Goal);
+            Draw_Rect(&Goal_Ptr->Rct);
+            if (Goal_Ptr->Is_Cover) {
+                Map_Texture(&Img_Goal_Cover);
+                Draw_Rect(&Goal_Ptr->Rct_Cover);
+            }
+        }
         Goal_Ptr = Goal_Ptr->next;
     }
 }
