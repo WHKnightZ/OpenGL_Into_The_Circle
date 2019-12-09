@@ -5,7 +5,7 @@ Game made by C++ OpenGL
 ## Content:
 
 Setup:<br />
-- Setup MinGW/G++<br />
+- Setup MinGW/GCC<br />
 - Open main.c or Into_The_Circle.dev if you have Dev C++<br />
 - Only build main.c<br />
 
@@ -27,7 +27,7 @@ Aiming from one circle to the other and achieve a perfect score!<br />
 How far can you go?<br />
 <br />
 First, the directional arrow appears, you need tap screen when it aims to the next circle<br />
-Then, you need adjust the power of the ball<br />
+Then, you need adjust the power of the ball by holding your mouse<br />
 After tap the screen, the ball will fly, if the ball falls into the circle, you gain score, and vice versa, you lose<br />
 Try to put the ball as close the center of the circle as possible, you will get perfect, +1 Score!<br />
 
@@ -38,10 +38,10 @@ Try to put the ball as close the center of the circle as possible, you will get 
 ## Conclusion:
 
 Thank to ZipZapGames<br />
-Graphic and sound are amazing<br />
+Graphics and sound are amazing<br />
 
 ## Youtube:
 
-https://www.youtube.com/watch?v=uzZv5hL9D2U
+https://www.youtube.com/watch?v=pt372tuzFIA
 
 --- End ---
