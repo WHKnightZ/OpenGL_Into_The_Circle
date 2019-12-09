@@ -26,14 +26,14 @@ Shoot the ball in the right direction with the right amount of force into the ne
 Aiming from one circle to the other and achieve a perfect score!<br />
 How far can you go?<br />
 <br />
-First, the directional arrow appears, you need tap screen when it aims to the next circle<br />
+First, the directional arrow appears, you need click your mouse when it aims to the next circle<br />
 Then, you need adjust the power of the ball by holding your mouse<br />
-After tap the screen, the ball will fly, if the ball falls into the circle, you gain score, and vice versa, you lose<br />
+After release the mouse, the ball will fly, if the ball falls into the circle, you gain score, and vice versa, you lose<br />
 Try to put the ball as close the center of the circle as possible, you will get perfect, +1 Score!<br />
 
 ## Image:
 
-![Image](https://lh3.googleusercontent.com/t7zBiB493TQ9nwE_7jpgEahjO5B5ayiWgEIy8y_mIaYf9tSYqkLo2tv7w61ztFwfAMt9CR9QFIkWKjBZpuNyyvFmHMjkD5v544kSbAOuPrYuCtLwrq3xAUNhBdaK68kBiM-n8iW4FqDPv2clnJb-H24HmT0lsAoJxskLHiD2det_ItB2E2xRzM8kLJTE25t6qK470uKcObry4gJZD7ni7oIIyD5HNkj-NE_XGoXTuiiq7hm0XXT7NMHb1vXph7vVFqEgnyGBb92S0wTRKtdbxQo7lxAsRKN0aPq34PfapL5xFI-Po_PQJDOHh_uVwlVDJw9eKyBn6SSuwHvnQ9Z9jnvaPJl5b8jTBv3FOC_eovNQ_h1isjqiecRNskXuaY2GeLeVn9OOyxSKXlehSMXd_nNqqws0cvniYERY3_M8bmLrX-n1vZPcuVCNaDrIC79qtJXFVh-jbNShgcds_uIYr5A-P41av-_a-5C9UMbQq-aEgjlFDJwXaJQ97YNCYec70rUMJZ9Lct4MZL3iDMZ1SRDOslS0pPDp9GbfsCKqf7U74W1fq0AdrU_cBUFUB_RqZ6Ix7_VrvdmUIz9JnFyh36GM9il3QyAUdFCi_Y46Se8rh7w07Dr3KRl59jWwC-tCxK8AyHaAeUult2aPjrzrlEqRiTnwErp_jDXyMgJqZRvyg6fFbmaO=w376-h578-no?pageId=103848556000486026022)
+![Image](https://lh3.googleusercontent.com/eOPqjVlNmWhB8d3-9BpkjwznsrGlHnp0YwtQZaE0ALkQHRa8uPKUuNww13qZTw16zRCQTaRtm0W4jxBq2T4UVhLGirzKY6ZMJ6IZdEwUvMts8SodDnscQTdrvJHM9ctafEM0eHzFD21tJ4_nSxSyiRaGwYaAzT3p1NcaTPrN5a6o5Xdo8HvLsE7ua18yCLcyEJ4RV7ap4CNTdS-Wx2zRywSjcZuL-aYCLVa-7787G36a66HBAnu1-uzcg1KMUYjI817Xe2ILFcAuoRBQMU2lo1T2J-wmhsW8PTuCFqZKau0JIOSwvc5oaX9Hddbp7_Os7SqFLNOTp-__PO1dJtyYQJEVbxYvFZDkG1G5meZQ6SOZqEwnRo0V_pkOcSr2RAV8sVCCyADo1oto6Ys1sO4MNDhzvPUsOqOgiGQzbX9yNpPuf1l2M8tb5ugpmtm5c9B_YO29JmHf1BV06HEhai_f56eyTgfeVgz2LwgMZFTsYThCjOfR71BRPbcmoASouVHWLx0QrPqmrDBRQAFDYCnv_Cf3fOaClF36lNRVnAIm_nXOenK87F5NESeU_TasPWbQxr3IYUzvuPrltwuqeJl3fB6XBMPrcR0ppnViNdV8K24j0kL2BEmw2oIRT-3rt5bIOwqJR4x86kZgZhZNnYn65f4xrcm9RPzNjYG3dl006CCgg-UkhH3oEA=w376-h578-no)
 
 ## Conclusion:
 
