@@ -11,19 +11,14 @@ void Draw_Goal() {
     Goal_Ptr = Goal_Current;
     int i;
     for (i = 0; i < 5; i++) {
-        Map_Texture(&Img_Goal_Shadow);
-        glTranslatef(Goal_Ptr->x, Goal_Ptr->y, 0.0f);
-        glRotatef(-30.0f, 0.0f, 0.0f, 1.0f);
-        Draw_Rect(&Goal_Ptr->Rct_Shadow);
-        glLoadIdentity();
-        Map_Texture(&Img_Goal);
-        Draw_Rect(&Goal_Ptr->Rct);
-        Map_Texture(&Img_Goal_Center);
-        Draw_Rect(&Goal_Ptr->Rct_Center);
-        if (Goal_Ptr->Is_Cover) {
-            Map_Texture(&Img_Goal_Cover);
-            Draw_Rect(&Goal_Ptr->Rct);
-        }
+    	if (Goal_Ptr->Rct.Bottom<=HEIGHT&&Goal_Ptr->Rct.Top>=0){
+    		Map_Texture(&Img_Goal);
+	        Draw_Rect(&Goal_Ptr->Rct);
+	        if (Goal_Ptr->Is_Cover) {
+	            Map_Texture(&Img_Goal_Cover);
+	            Draw_Rect(&Goal_Ptr->Rct_Cover);
+	        }
+		}
         Goal_Ptr = Goal_Ptr->next;
     }
 }

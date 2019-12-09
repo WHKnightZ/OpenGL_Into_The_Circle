@@ -10,7 +10,7 @@ void Map_Texture(Image *img) {
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, img->w, img->h, 0, GL_RGBA, GL_UNSIGNED_BYTE, img->img);
 }
 
-void Load_Num() {
+void Load_Texture_Num() {
     int Pos[][4] = {
         {0, 0, 20, 46},
         {20, 0, 14, 46},
@@ -33,6 +33,21 @@ void Load_Num() {
         Img_Num[i] = Img_Tmp;
     }
     free(Img.img);
+}
+
+void Load_Texture_Goal(){
+	Image Img_Goal_Tmp, Img_Goal_Shadow_Tmp, Img_Goal_Center_Tmp;
+	Load_Png(&Img_Goal_Tmp.img, &Img_Goal_Tmp.w, &Img_Goal_Tmp.h, "Images/Goal.png");
+    Load_Png(&Img_Goal_Center_Tmp.img, &Img_Goal_Center_Tmp.w, &Img_Goal_Center_Tmp.h, "Images/Goal_Center.png");
+    Load_Png(&Img_Goal_Shadow_Tmp.img, &Img_Goal_Shadow_Tmp.w, &Img_Goal_Shadow_Tmp.h, "Images/Goal_Shadow.png");
+    Create_Image(&Img_Goal, 336, 255);
+    Mix_Image(&Img_Goal, &Img_Goal_Shadow_Tmp, 34, 12);
+    Mix_Image(&Img_Goal, &Img_Goal_Tmp, 0, 0);
+    Mix_Image(&Img_Goal, &Img_Goal_Center_Tmp, 50, 50);
+    Swap_Image(Img_Goal.img, Img_Goal.w, Img_Goal.h);
+    free(Img_Goal_Tmp.img);
+    free(Img_Goal_Shadow_Tmp.img);
+    free(Img_Goal_Center_Tmp.img);
 }
 
 void Draw_Rect(Rect *Ptr_Rct) {
@@ -84,18 +99,14 @@ void Set_Goal(Goal *g, int y) {
     g->r = r;
     g->x = rand() % (WIDTH - 2 * (int)g->r) + g->r;
     g->Is_Cover = 0;
-    g->Rct.Left = g->x - g->r;
-    g->Rct.Right = g->x + g->r;
-    g->Rct.Bottom = g->y - g->r;
-    g->Rct.Top = g->y + g->r;
-    g->Rct_Center.Left = g->x - 14.0f;
-    g->Rct_Center.Right = g->x + 14.0f;
-    g->Rct_Center.Bottom = g->y - 14.0f;
-    g->Rct_Center.Top = g->y + 14.0f;
-    g->Rct_Shadow.Left = 0.0f;
-    g->Rct_Shadow.Right = 280.0f;
-    g->Rct_Shadow.Bottom = -r - 2.0f;
-    g->Rct_Shadow.Top = g->Rct_Shadow.Bottom + r * 2 + 4.0f;
+    g->Rct.Left = g->x-r;
+    g->Rct.Right = g->Rct.Left+336.0f*r/64;
+    g->Rct.Top = g->y+r;
+    g->Rct.Bottom = g->Rct.Top-255.0f*r/64;
+    g->Rct_Cover.Left = g->x - g->r;
+    g->Rct_Cover.Right = g->x + g->r;
+    g->Rct_Cover.Bottom = g->y - g->r;
+    g->Rct_Cover.Top = g->y + g->r;
 }
 
 void Init_Goal() {
@@ -151,6 +162,7 @@ void Load_Menu() {
     Menu_Stt = 0;
     Menu_Alpha = 0.0f;
     Menu_Stt_Go = 0;
+    Is_Perfect=0;
     glutPassiveMotionFunc(NULL);
     glutMouseFunc(NULL);
 }
@@ -192,20 +204,20 @@ void Init_Game() {
     Game_Display_Func[GAME_STT_GOAL] = Game_Display_Goal;
     Game_Display_Func[GAME_STT_DEAD] = Game_Display_Dead;
     Game_Display_Func[GAME_STT_EXIT] = Game_Display_Exit;
-    Load_Num();
     // Texture
     Load_Texture(&Img_Logo, "Images/Logo.png");
     Load_Texture(&Img_Start_Btn, "Images/Start_Btn.png");
     Load_Texture(&Img_Start, "Images/Start.png");
     Load_Texture(&Img_Start_Center, "Images/Start_Center.png");
+    Load_Texture(&Img_Goal, "Images/Goal.png");
+    Load_Texture(&Img_Goal_Cover, "Images/Goal_Cover.png");
     Load_Texture(&Img_Ball, "Images/Ball.png");
     Load_Texture(&Img_Prog_Bar, "Images/Progress_Bar.png");
     Load_Texture(&Img_Prog_Power, "Images/Progress_Power.png");
-    Load_Texture(&Img_Goal, "Images/Goal.png");
-    Load_Texture(&Img_Goal_Center, "Images/Goal_Center.png");
-    Load_Texture(&Img_Goal_Shadow, "Images/Goal_Shadow.png");
-    Load_Texture(&Img_Goal_Cover, "Images/Goal_Cover.png");
     Load_Texture(&Img_Ripple, "Images/Ripple.png");
+    Load_Texture(&Img_Perfect, "Images/Perfect.png");
+    Load_Texture_Num();
+    //Load_Texture_Goal();
     // Rect
     Ball.w2 = Img_Ball.w / 2;
     Ball.h2 = Img_Ball.h / 2;
@@ -273,7 +285,22 @@ void Init_Game() {
         Ripple_Offset[1][i] = Ripple_Offset[0][i - 10];
         Ripple_Alpha[1][i] = Ripple_Alpha[0][i - 10];
     }
-    //
+    // Perfect
+    for (i=0;i<20;i++){
+    	Rct_Perfect_Save[i].Left=-(i+1)*2.3f;
+    	Rct_Perfect_Save[i].Right=(i+1)*2.3f;
+    	Rct_Perfect_Save[i].Bottom=-(i+1)*0.3f-10.0f+80.0f;
+    	Rct_Perfect_Save[i].Top=(i+1)*0.3f+10.0f+80.0f;
+    	Perfect_Alpha[i]=1.0f;
+	}
+    for (i=20;i<80;i++){
+    	Rct_Perfect_Save[i].Left=-46.0f;
+    	Rct_Perfect_Save[i].Right=46.0f;
+    	Rct_Perfect_Save[i].Bottom=-18.0f+(i-19)*1.0f+80.0f;
+    	Rct_Perfect_Save[i].Top=18.0f+(i-19)*1.0f+80.0f;
+    	Perfect_Alpha[i]=(80-1.0f-i)/(80-20);
+	}
+	//
     Init_Sound();
     Init_Goal();
     Load_Menu();

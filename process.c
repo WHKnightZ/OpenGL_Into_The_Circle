@@ -48,10 +48,10 @@ void Game_Process_Shoot() {
     int i;
     for (i = 0; i < 5; i++) {
         Goal_Ptr->y -= Ball.vy;
-        Goal_Ptr->Rct.Bottom = Goal_Ptr->y - Goal_Ptr->r;
-        Goal_Ptr->Rct.Top = Goal_Ptr->y + Goal_Ptr->r;
-        Goal_Ptr->Rct_Center.Bottom = Goal_Ptr->y - 14.0f;
-        Goal_Ptr->Rct_Center.Top = Goal_Ptr->y + 14.0f;
+        Goal_Ptr->Rct.Bottom -= Ball.vy;
+        Goal_Ptr->Rct.Top -= Ball.vy;
+        Goal_Ptr->Rct_Cover.Bottom -= Ball.vy;
+        Goal_Ptr->Rct_Cover.Top -= Ball.vy;
         Goal_Ptr = Goal_Ptr->next;
     }
     if (Rct_Start.Top > 0) {
@@ -69,19 +69,29 @@ void Game_Process_Shoot() {
     Ball.vy *= 0.97f;
     if (Ball.vx < 0.2f && Ball.vy < 0.2f) {
         Game_Timer = 0;
-        if (Sqr(Ball.x - Goal_Current->x) + Sqr(Ball.y - Goal_Current->y) < Sqr(Goal_Current->r - 8.0f)) {
+        float Distance=Sqr(Ball.x - Goal_Current->x) + Sqr(Ball.y - Goal_Current->y);
+        if (Distance < Sqr(Goal_Current->r - 8.0f)) {
             Cover.Stt = 1;
             Cover.Offset = Goal_Current->r * 0.08f;
-            Cover.Vertex.Left = (int)Goal_Current->Rct.Left;
-            Cover.Vertex.Right = Goal_Current->Rct.Right;
-            Cover.Vertex.Bottom = (int)Goal_Current->Rct.Bottom;
+            Cover.Vertex.Left = (int)(Goal_Current->x-Goal_Current->r);
+            Cover.Vertex.Right = (int)(Goal_Current->x+Goal_Current->r);
+            Cover.Vertex.Bottom = (int)(Goal_Current->y-Goal_Current->r);
             Cover.Vertex.Top = Cover.Vertex.Bottom + Cover.Stt * Cover.Offset;
             Cover.TexCoord.Left = 0.0f;
             Cover.TexCoord.Right = 1.0f;
             Cover.TexCoord.Bottom = 0.0f;
             Cover.TexCoord.Top = Cover.Stt / 25.0f;
-            Goal_Cover = Goal_Current;
-            Create_Goal();
+            Goal_Stand = Goal_Current;
+            if (Distance<200){
+            	Score_Add=2;
+            	Is_Perfect=1;
+            	Perfect_Stt=0;
+            	Mix_PlayChannel(-1, Sound_Perfect, 0);
+			}else{
+				Score_Add=1;
+				Mix_PlayChannel(-1, Sound_Goal, 0);
+			}
+			Create_Goal();
             Game_Stt = GAME_STT_GOAL;
         } else {
             Game_Stt = GAME_STT_DEAD;
@@ -96,9 +106,9 @@ void Game_Process_Goal() {
         Cover.Vertex.Top = Cover.Vertex.Bottom + Cover.Stt * Cover.Offset;
         Cover.TexCoord.Top = Cover.Stt / 25.0f;
         if (Cover.Stt == 25) {
-            Goal_Cover->Is_Cover = 1;
+            Goal_Stand->Is_Cover = 1;
             Game_Timer = 0;
-            Score++;
+            Score+=Score_Add;
             Update_Score();
             Game_Stt = GAME_STT_IDLE;
         }
