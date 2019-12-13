@@ -32,7 +32,7 @@ After release the mouse, the ball will fly, if the ball falls into the circle, y
 Try to put the ball as close the center of the circle as possible, you will get perfect, +1 Score!<br />
 
 ## Image:
-![Image](http://imgur.com/a/BDqW84h)
+![Image](https://i.imgur.com/y2cerv6.png)
 
 ## Conclusion:
 
